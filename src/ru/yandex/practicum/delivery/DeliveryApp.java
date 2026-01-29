@@ -1,5 +1,7 @@
 package ru.yandex.practicum.delivery;
 
+import ru.yandex.practicum.delivery.parcel.Parcel;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
