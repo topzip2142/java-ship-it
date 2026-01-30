@@ -9,8 +9,6 @@ public abstract class Parcel {
     public static final int BASE_COST_PERISHABLE = 3;
     public static final int BASE_COST_FRAGILE = 4;
 
-
-
     public Parcel(String description, int weight, String deliveryAddress, int sendDay) {
         this.description = description;
         this.weight = weight;

@@ -142,7 +142,7 @@ public class DeliveryApp {
 
     private static void showParcelBox() {
         System.out.print("Введите тип коробки (1 - с обычными посылками, "
-                         + "2 - с  хрупкими посылками, 3 - со скоропортящимися): ");
+                + "2 - с  хрупкими посылками, 3 - со скоропортящимися): ");
         int parcelBoxType = Integer.parseInt(scanner.nextLine());
 
         ParcelBox<? extends Parcel> parcelBox;
@@ -201,4 +201,3 @@ public class DeliveryApp {
         }
     }
 }
-

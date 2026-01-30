@@ -62,8 +62,8 @@ public class DeliveryCostTest {
     @Test
     public void shouldBeFalseWhenPerishableParcelAndSendDayAndTimeToLiveLessThenCurrentDay() {
         PerishableParcel anotherPerishableParcel = new PerishableParcel(
-          "Йогурты - 5 шт.", 2,
-          "Новый Уренгой", 16, 10
+                "Йогурты - 5 шт.", 2,
+                "Новый Уренгой", 16, 10
         );
 
         assertFalse(anotherPerishableParcel.isExpired(27));
@@ -104,8 +104,8 @@ public class DeliveryCostTest {
         assertEquals(1, parcelBoxFragile.getParcelsCount());
 
         FragileParcel anotherFragileParcel1 = new FragileParcel(
-          "Древняя ваза династии Цинь", 2,
-          "Китай, Пекин", 5
+                "Древняя ваза династии Цинь", 2,
+                "Китай, Пекин", 5
         );
 
         parcelBoxFragile.addParcel(anotherFragileParcel1);

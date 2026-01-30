@@ -16,5 +16,4 @@ public class PerishableParcel extends Parcel {
     public int getBaseCost() {
         return Parcel.BASE_COST_PERISHABLE;
     }
-
 }

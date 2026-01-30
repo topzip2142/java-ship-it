@@ -1,8 +1,6 @@
 package ru.yandex.practicum.delivery.parcel;
 
-public class StandardParcel extends Parcel{
-
-
+public class StandardParcel extends Parcel {
     public StandardParcel(String description, int weight, String deliveryAddress, int sendDay) {
         super(description, weight, deliveryAddress, sendDay);
     }
@@ -11,5 +9,4 @@ public class StandardParcel extends Parcel{
     public int getBaseCost() {
         return Parcel.BASE_COST_STANDARD;
     }
-
 }
