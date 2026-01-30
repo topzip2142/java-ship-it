@@ -82,10 +82,12 @@ public class DeliveryApp {
         switch (parcelType) {
             case 1:
                 parcel = new StandardParcel(parcelDescription, parcelWeight, parcelDeliveryAddress, parcelSendDay);
+                parcelBoxStandard.addParcel((StandardParcel) parcel);
                 break;
 
             case 2:
                 parcel = new FragileParcel(parcelDescription, parcelWeight, parcelDeliveryAddress, parcelSendDay);
+                parcelBoxFragile.addParcel((FragileParcel) parcel);
                 break;
 
             case 3:
@@ -97,6 +99,7 @@ public class DeliveryApp {
                         parcelDeliveryAddress, parcelSendDay,
                         parcelTimeToLive
                 );
+                parcelBoxPerishable.addParcel((PerishableParcel) parcel);
                 break;
 
             default:
@@ -117,14 +120,6 @@ public class DeliveryApp {
         }
 
         for (Parcel parcel : allParcels) {
-            if (parcel instanceof StandardParcel) {
-                parcelBoxStandard.addParcel((StandardParcel) parcel);
-            } else if (parcel instanceof FragileParcel) {
-                parcelBoxFragile.addParcel((FragileParcel) parcel);
-            } else if (parcel instanceof PerishableParcel) {
-                parcelBoxPerishable.addParcel((PerishableParcel) parcel);
-            }
-
             parcel.packageItem();
             parcel.deliver();
         }
@@ -138,7 +133,7 @@ public class DeliveryApp {
             }
         }
 
-        System.out.println("Общая стоимость всех доставок: " + totalCost + " руб.");
+        System.out.println("Общая стоимость доставки: " + totalCost + " руб.");
     }
 
     private static void showParcelBox() {
@@ -169,7 +164,7 @@ public class DeliveryApp {
         System.out.println("Список отслеживаемых посылок:");
         for (int i = 0; i < trackableParcels.size(); i++) {
             Parcel trackableParcel = (Parcel) trackableParcels.get(i);
-            System.out.println("\t" + (i + 1) + "." + trackableParcel.getDescription() + " " + trackableParcel.getDeliveryAddress());
+            System.out.println("\t" + (i + 1) + ". " + trackableParcel.getDescription() + " " + trackableParcel.getDeliveryAddress());
         }
 
     }
@@ -180,7 +175,7 @@ public class DeliveryApp {
             return;
         }
 
-        System.out.print("Введите номер отслеживаемой посылки: ");
+        System.out.print("Введите номер отслеживаемой посылки:");
         showTrackableParcels();
 
         int parcelIndex = Integer.parseInt(scanner.nextLine());
