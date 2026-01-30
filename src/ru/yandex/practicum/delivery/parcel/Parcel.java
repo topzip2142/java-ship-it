@@ -39,4 +39,8 @@ public abstract class Parcel {
     public String getDescription() {
         return description;
     }
+
+    public String getDeliveryAddress() {
+        return deliveryAddress;
+    }
 }
