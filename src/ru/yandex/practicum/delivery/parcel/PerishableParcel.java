@@ -1,17 +1,20 @@
 package ru.yandex.practicum.delivery.parcel;
 
 public class PerishableParcel extends Parcel {
-    public PerishableParcel(String description, int weight, String deliveryAddress, int sendDay) {
+    private int timeToLive;
+
+    public PerishableParcel(String description, int weight, String deliveryAddress, int sendDay, int timeToLive) {
         super(description, weight, deliveryAddress, sendDay);
+        this.timeToLive = timeToLive;
+    }
+
+    public boolean isExpired(int currentDay) {
+        return (sendDay + timeToLive) <= currentDay;
     }
 
     @Override
-    public void deliver() {
-
+    public int getBaseCost() {
+        return Parcel.BASE_COST_PERISHABLE;
     }
 
-    @Override
-    public double calculateDeliveryCost() {
-        return 0;
-    }
 }
