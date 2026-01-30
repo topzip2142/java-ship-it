@@ -56,14 +56,14 @@ public class DeliveryCostTest {
                 "Стамбул", 4, 3
         );
 
-        assertTrue(anotherPerishableParcel.isExpired(8));
+        assertTrue(anotherPerishableParcel.isExpired(6));
     }
 
     @Test
     public void shouldBeFalseWhenPerishableParcelAndSendDayAndTimeToLiveLessThenCurrentDay() {
         PerishableParcel anotherPerishableParcel = new PerishableParcel(
           "Йогурты - 5 шт.", 2,
-          "Новый Уренгой", 20, 10
+          "Новый Уренгой", 16, 10
         );
 
         assertFalse(anotherPerishableParcel.isExpired(27));
