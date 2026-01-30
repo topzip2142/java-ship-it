@@ -24,13 +24,17 @@ public class ParcelBox<T extends Parcel> {
 
     }
 
+    public int getParcelsCount() {
+        return parcels.size();
+    }
+
     public void getAllParcels() {
         if (parcels.isEmpty()) {
             System.out.println("Данная коробка пуста");
             return;
         }
 
-        System.out.println("В данной коробке лежат посылки:");
+        System.out.println("В данной коробке лежат посылки (" + getParcelsCount() + "):");
         for (T parcel : parcels) {
             System.out.println("\t" + parcel.getDescription());
         }
