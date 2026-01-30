@@ -5,9 +5,9 @@ public abstract class Parcel {
     protected final int weight;
     protected final String deliveryAddress;
     protected final int sendDay;
-    public static final int BASE_COST_STANDARD = 2;
-    public static final int BASE_COST_PERISHABLE = 3;
-    public static final int BASE_COST_FRAGILE = 4;
+    protected static final int BASE_COST_STANDARD = 2;
+    protected static final int BASE_COST_PERISHABLE = 3;
+    protected static final int BASE_COST_FRAGILE = 4;
 
     public Parcel(String description, int weight, String deliveryAddress, int sendDay) {
         this.description = description;
