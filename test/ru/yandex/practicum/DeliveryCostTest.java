@@ -73,7 +73,7 @@ public class DeliveryCostTest {
     }
 
     @Test
-    public void shouldAddParcelInBoxWhenBoxIsNotOverWeight() {
+    public void shouldPutParcelInBoxWhenBoxIsNotOverWeight() {
         parcelBoxPerishable.addParcel(perishableParcel);
         assertEquals(1, parcelBoxPerishable.getParcelsCount());
 
