@@ -9,6 +9,8 @@ public class DeliveryCostTest {
     public static ParcelBox<StandardParcel> parcelBoxStandard = new ParcelBox<>(20);
     public static ParcelBox<FragileParcel> parcelBoxFragile = new ParcelBox<>(15);
     public static ParcelBox<PerishableParcel> parcelBoxPerishable = new ParcelBox<>(25);
+    private static final String ERROR_PARCEL_BOX_OVERWEIGHT = "Посылка неверно добавлена в коробку, "
+                                                            + "у посылки превышен вес для коробки";
 
     private static StandardParcel standardParcel;
     private static FragileParcel fragileParcel;
@@ -104,14 +106,20 @@ public class DeliveryCostTest {
         parcelBoxFragile.addParcel(fragileParcel);
         assertEquals(1, parcelBoxFragile.getParcelsCount());
 
-        FragileParcel anotherFragileParcel1 = new FragileParcel(
-                "Древняя ваза династии Цинь", 2,
+        FragileParcel anotherFragileParcel = new FragileParcel(
+                "Древние вазы династии Цинь", 20,
                 "Китай, Пекин", 5
         );
 
-        parcelBoxFragile.addParcel(anotherFragileParcel1);
-        assertEquals(1, parcelBoxFragile.getParcelsCount(),
-                "Посылка неверно добавлена в коробку, у коробки максимальный перевес"
-        );
+        parcelBoxFragile.addParcel(anotherFragileParcel);
+        assertEquals(1, parcelBoxFragile.getParcelsCount(), ERROR_PARCEL_BOX_OVERWEIGHT);
+    }
+
+    @Test
+    public void shouldBeEmptyParcelBoxWhenOneParcelWithOverweightPutInBox() {
+        ParcelBox<StandardParcel> anotherParcelBoxStandard = new ParcelBox<>(2);
+        anotherParcelBoxStandard.addParcel(standardParcel);
+
+        assertEquals(0, anotherParcelBoxStandard.getParcelsCount(), ERROR_PARCEL_BOX_OVERWEIGHT);
     }
 }
