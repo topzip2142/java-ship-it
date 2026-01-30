@@ -57,8 +57,6 @@ public class DeliveryApp {
         System.out.println("0 — Завершить");
     }
 
-    // реализуйте методы ниже
-
     private static void addParcel() {
         System.out.print("Введите тип (1 - обычная, 2 - хрупкая, 3 - скоропортящаяся): ");
         int parcelType = Integer.parseInt(scanner.nextLine());
@@ -143,27 +141,30 @@ public class DeliveryApp {
     }
 
     private static void showParcelBox() {
-        System.out.print("Какую коробку показать? 1 - с обычными посылками, 2 - с  хрупкими посылками, 3 - со скоропортящимися");
+        System.out.print("Введите тип коробки (1 - с обычными посылками, "
+                         + "2 - с  хрупкими посылками, 3 - со скоропортящимися): ");
         int parcelBoxType = Integer.parseInt(scanner.nextLine());
 
-
+        ParcelBox<? extends Parcel> parcelBox;
         switch (parcelBoxType) {
             case 1:
-                parcelBoxStandard.getAllParcels();
+                parcelBox = parcelBoxStandard;
                 break;
             case 2:
-                parcelBoxFragile.getAllParcels();
+                parcelBox = parcelBoxFragile;
                 break;
             case 3:
-                parcelBoxPerishable.getAllParcels();
+                parcelBox = parcelBoxPerishable;
                 break;
             default:
                 System.out.println("Такой коробки не существует");
+                return;
         }
+
+        parcelBox.getAllParcels();
     }
 
     private static void showTrackableParcels() {
-
         System.out.println("Список отслеживаемых посылок:");
         for (int i = 0; i < trackableParcels.size(); i++) {
             Parcel trackableParcel = (Parcel) trackableParcels.get(i);
@@ -198,8 +199,6 @@ public class DeliveryApp {
                 break;
             }
         }
-
     }
-
 }
 
