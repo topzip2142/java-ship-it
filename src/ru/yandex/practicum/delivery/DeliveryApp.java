@@ -10,6 +10,7 @@ public class DeliveryApp {
 
     private static final Scanner scanner = new Scanner(System.in);
     private static List<Parcel> allParcels = new ArrayList<>();
+    private static List<Trackable> trackableParcels = new ArrayList<>();
 
     private static ParcelBox<StandardParcel> parcelBoxStandard = new ParcelBox<>(20);
     private static ParcelBox<FragileParcel> parcelBoxFragile = new ParcelBox<>(10);
@@ -34,6 +35,9 @@ public class DeliveryApp {
                 case 4:
                     showParcelBox();
                     break;
+                case 5:
+                    changeTrackingStatus();
+                    break;
                 case 0:
                     running = false;
                     break;
@@ -49,14 +53,19 @@ public class DeliveryApp {
         System.out.println("2 — Отправить все посылки");
         System.out.println("3 — Посчитать стоимость доставки");
         System.out.println("4 - Показать содержимое коробки");
+        System.out.println("5 - Поменять статус отслеживаемой посылки");
         System.out.println("0 — Завершить");
     }
 
     // реализуйте методы ниже
 
     private static void addParcel() {
-        System.out.print("Какую посылку хотите отправить? 1 - обычную, 2 - хрупкую, 3 - скоропортящуюся: ");
+        System.out.print("Введите тип (1 - обычная, 2 - хрупкая, 3 - скоропортящаяся): ");
         int parcelType = Integer.parseInt(scanner.nextLine());
+        if (parcelType < 1 || parcelType > 3) {
+            System.out.println("Такого типа посылок нет");
+            return;
+        }
 
         System.out.print("Введите описание: ");
         String parcelDescription = scanner.nextLine();
@@ -96,6 +105,10 @@ public class DeliveryApp {
                 return;
         }
         allParcels.add(parcel);
+
+        if (parcel instanceof Trackable) {
+            trackableParcels.add((Trackable) parcel);
+        }
     }
 
     private static void sendParcels() {
@@ -147,6 +160,45 @@ public class DeliveryApp {
             default:
                 System.out.println("Такой коробки не существует");
         }
+    }
+
+    private static void showTrackableParcels() {
+
+        System.out.println("Список отслеживаемых посылок:");
+        for (int i = 0; i < trackableParcels.size(); i++) {
+            Parcel trackableParcel = (Parcel) trackableParcels.get(i);
+            System.out.println("\t" + (i + 1) + "." + trackableParcel.getDescription() + " " + trackableParcel.getDeliveryAddress());
+        }
+
+    }
+
+    private static void changeTrackingStatus() {
+        if (trackableParcels.isEmpty()) {
+            System.out.println("Нет отслеживаемых посылок");
+            return;
+        }
+
+        System.out.print("Введите номер отслеживаемой посылки: ");
+        showTrackableParcels();
+
+        int parcelIndex = Integer.parseInt(scanner.nextLine());
+        if (parcelIndex > trackableParcels.size() || parcelIndex < 1) {
+            System.out.println("Введён неверный номер посылки");
+            return;
+        }
+
+        for (int i = 0; i < trackableParcels.size(); i++) {
+            if (parcelIndex - 1 == i) {
+                Trackable trackableParcel = trackableParcels.get(i);
+
+                System.out.print("Введите новый статус для посылки: ");
+                String newLocation = scanner.nextLine();
+
+                trackableParcel.reportStatus(newLocation);
+                break;
+            }
+        }
+
     }
 
 }
