@@ -2,7 +2,8 @@ package ru.yandex.practicum;
 
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
-import ru.yandex.practicum.delivery.parcel.*;
+import ru.yandex.practicum.delivery.parcels.*;
+import ru.yandex.practicum.delivery.tools.ParcelBox;
 
 public class DeliveryCostTest {
     public static ParcelBox<StandardParcel> parcelBoxStandard = new ParcelBox<>(20);
@@ -113,5 +114,4 @@ public class DeliveryCostTest {
                 "Посылка неверно добавлена в коробку, у коробки максимальный перевес"
         );
     }
-
 }
