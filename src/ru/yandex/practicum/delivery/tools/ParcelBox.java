@@ -23,7 +23,6 @@ public class ParcelBox<T extends Parcel> {
 
         parcels.add(parcel);
         weight += parcel.getWeight();
-
     }
 
     public int getParcelsCount() {
