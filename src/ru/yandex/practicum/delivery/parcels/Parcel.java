@@ -1,4 +1,4 @@
-package ru.yandex.practicum.delivery.parcel;
+package ru.yandex.practicum.delivery.parcels;
 
 public abstract class Parcel {
     protected final String description;
