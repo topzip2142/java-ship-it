@@ -1,6 +1,6 @@
 package ru.yandex.practicum.delivery.parcel;
 
-public class FragileParcel extends Parcel{
+public class FragileParcel extends Parcel implements Trackable {
     public FragileParcel(String description, int weight, String deliveryAddress, int sendDay) {
         super(description, weight, deliveryAddress, sendDay);
     }
@@ -12,7 +12,12 @@ public class FragileParcel extends Parcel{
     }
 
     @Override
-    public double calculateDeliveryCost() {
-        return 0;
+    public int getBaseCost() {
+        return Parcel.BASE_COST_FRAGILE;
+    }
+
+    @Override
+    public void reportStatus(String newLocation) {
+        System.out.println("Хрупкая посылка <<" + description + ">> изменила местоположение на " + newLocation);
     }
 }
