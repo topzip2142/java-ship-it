@@ -1,10 +1,14 @@
 package ru.yandex.practicum.delivery.parcel;
 
 public abstract class Parcel {
-    protected String description;
-    protected int weight;
-    protected String deliveryAddress;
-    protected int sendDay;
+    protected final String description;
+    protected final int weight;
+    protected final String deliveryAddress;
+    protected final int sendDay;
+    public static final int BASE_COST_STANDARD = 2;
+    public static final int BASE_COST_PERISHABLE = 3;
+    public static final int BASE_COST_FRAGILE = 4;
+
 
 
     public Parcel(String description, int weight, String deliveryAddress, int sendDay) {
@@ -19,8 +23,20 @@ public abstract class Parcel {
     }
 
     public void deliver() {
-        System.out.println("Посылка <<" + description + ">> доставлена " + deliveryAddress);
+        System.out.println("Посылка <<" + description + ">> доставлена по адресу " + deliveryAddress);
     }
 
-    public abstract double calculateDeliveryCost();
+    public int calculateDeliveryCost() {
+        return weight * getBaseCost();
+    }
+
+    public abstract int getBaseCost();
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 }
